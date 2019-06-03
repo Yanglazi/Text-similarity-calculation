@@ -158,7 +158,11 @@ def gen_hard_examples(input_file=train_dir, output_file='model_train.data'):
 
 
 def demo():
-    topics_feature = np.load('output/topics_feature.npy')
+    topic_feature_path = 'output/topics_feature.npy'
+    if not os.path.exists(topic_feature_path):
+        topic_to_features(topics_dir, topic_feature_path)
+    topics_feature = np.load(topic_feature_path)
+
     session = tf.Session()
     session.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
@@ -186,7 +190,11 @@ def demo():
 
 
 def test(filename):
-    topics_feature = np.load('output/topics_feature.npy')
+    topic_feature_path = 'output/topics_feature.npy'
+    if not os.path.exists(topic_feature_path):
+        topic_to_features(topics_dir, topic_feature_path)
+
+    topics_feature = np.load(topic_feature_path)
 
     blog_file = open_file(filename, 'r')
     real_topics, blogs = [], []
@@ -243,8 +251,6 @@ if __name__ == '__main__':
 
     topics_dir = 'output/topics.txt'
     topics = read_file(topics_dir)
-    #topic_to_features(topics_dir, 'output/topics_feature.npy')
 
-    demo()
-    #test('output/test4')
-    #test('data/blogs/blogs.val.txt')
+    # demo()
+    # test('data/blogs/blogs.test.txt')

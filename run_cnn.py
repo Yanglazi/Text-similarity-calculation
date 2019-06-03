@@ -17,7 +17,6 @@ from data.cnews_loader import batch_iter, process_topics
 
 base_dir = 'data/blogs'
 train_dir = os.path.join(base_dir, 'train.data')
-test_dir = os.path.join(base_dir, 'blogs.test2.txt')
 val_dir = os.path.join(base_dir, 'val.data')
 vocab_dir = os.path.join(base_dir, 'vocab.txt')
 topic_dir = os.path.join(base_dir, 'topics.txt')
@@ -75,16 +74,6 @@ def train():
     saver = tf.train.Saver()
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-
-    '''
-    print("Loading training and validation data...")
-    # 载入训练集与验证集
-    start_time = time.time()
-    topic_train, blog_train = process_file(train_dir, vocab_dir, config.seq_length)
-    topic_val, blog_val = process_file(val_dir, vocab_dir, config.seq_length)
-    time_dif = get_time_dif(start_time)
-    print("Time usage:", time_dif)
-    '''
 
     # 创建session
     session = tf.Session()
