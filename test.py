@@ -125,3 +125,5 @@ def batch_iter(topic, blog, label_topics_pad, neg_num, batch_size=64):
         topic_neg_shuffle = label_topics_pad[indices]
 
         yield topic_pos_shuffle[start_id:end_id], topic_neg_shuffle, blog_shuffle[start_id:end_id]
+
+'???'
